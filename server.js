@@ -5,7 +5,7 @@ const app = express();
 const { errorHandler } = require('./middleware/errorMiddleware')
 const cors = require('cors');
 const connectDB = require('./config/db');
-// const connectFirebaseAdmin = require('./config/firebaseAdmin');
+const connectFirebaseAdmin = require('./config/firebaseAdmin');
 const colors = require('colors');
 const socketIo = require('socket.io');
 const http = require('http');
@@ -18,8 +18,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
-// connectDB();
-// connectFirebaseAdmin();
+connectDB();
+connectFirebaseAdmin();
 
 // Socket.IO setup for real-time communication
 io.on('connection', (socket) => {

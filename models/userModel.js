@@ -8,10 +8,23 @@ const userSchema = new Schema({
         unique: true,
         index: true,
     },
+    userEmail: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        unique: true,
+        match: [/^\S+@\S+\.\S+$/, "Invalid email format"],
+    },
     instruments: {
         type: String,
-        enum: ['drums', 'guitars', 'bass','saxophone', 'keyboards', 'vocals'],
-        default: 'drums', // Default to 'drums'
+        enum: ['', 'drums', 'guitars', 'bass', 'saxophone', 'keyboards', 'vocals'],
+        default: '', // Default to 'drums'
+    },
+    role: {
+        type: String,
+        enum: ['admin', 'player'],
+        default: 'player', // Default to 'player'
     }
 }, { timestamps: true }); // Adds createdAt and updatedAt fields
 
