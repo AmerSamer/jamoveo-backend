@@ -18,7 +18,7 @@ const userSchema = new Schema({
     },
     instruments: {
         type: String,
-        enum: ['', 'drums', 'guitars', 'bass', 'saxophone', 'keyboards', 'vocals'],
+        enum: ['', 'drums', 'guitars', 'bass', 'saxophone', 'keyboards', 'singer'],
         default: '', // Default to 'drums'
     },
     role: {
