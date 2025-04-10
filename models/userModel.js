@@ -1,3 +1,12 @@
+/**
+ * userModel.js
+ *
+ * Mongoose schema for the User collection in the JaMoveo app.
+ * - Stores Firebase UID, email, instrument, and user role
+ * - Supports roles: "player" and "admin"
+ * - Provides a static method to list all instrument options
+ */
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 

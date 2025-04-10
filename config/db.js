@@ -1,3 +1,12 @@
+/**
+ * db.js
+ *
+ * Connects the Express server to MongoDB using Mongoose.
+ * - Uses MONGO_URL from environment variables
+ * - Logs connection status
+ * - Exits the process on failure
+ */
+
 const mongoose = require('mongoose')
 const connectDB = async () => {
     try {

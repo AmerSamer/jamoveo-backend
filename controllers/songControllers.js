@@ -1,8 +1,22 @@
+/**
+ * songControllers.js
+ *
+ * Handles all server-side logic for song-related routes:
+ * - Fetching all songs
+ * - Fetching individual song JSON content
+ * - Adding new songs to the database
+ */
+
 const asyncHandler = require('express-async-handler');
 const { findSongs, findSong, createSong } = require('../services/songService')
 const fs = require("fs");
 const path = require("path");
 
+/**
+ * @route   GET /api/song/songs
+ * @desc    Fetch all available songs (admin only)
+ * @access  Protected
+ */
 const getSongs = asyncHandler(async (req, res) => {
     try {
         const songs = await findSongs();
@@ -15,11 +29,16 @@ const getSongs = asyncHandler(async (req, res) => {
         throw new Error(error);
     }
 })
+
+/**
+ * @route   GET /api/song/song/:file
+ * @desc    Loads a specific song's chords and lyrics from file
+ * @access  Protected
+ */
 const getSong = asyncHandler(async (req, res) => {
-    // const filename = req.params.filename;
     const { file } = req.params;
     const filePath = path.join(__dirname, "../utilities", file);
- 
+
     fs.readFile(filePath, "utf8", (err, data) => {
         if (err) return res.status(404).json({ error: "Song not found" });
 
@@ -30,25 +49,13 @@ const getSong = asyncHandler(async (req, res) => {
             res.status(500).json({ error: "Invalid JSON format" });
         }
     });
-
-    //////////////
-    // try {
-    //     const { name } = req.params;
-    //     const filePath = path.join(__dirname, "../songs", name);
-    //     if (!name) {
-    //         throw new Error("file is required");
-    //     }
-
-    //     const song = await findSong(name);
-    //     if (song) {
-    //         return res.status(200).json({ message: "Song retrieved successfully", data: song });
-    //     } else {
-    //         throw new Error("Invalid Song Data");
-    //     }
-    // } catch (error) {
-    //     throw new Error(error.message);
-    // }
 })
+
+/**
+ * @route   POST /api/song/song
+ * @desc    Add a new song to the database
+ * @access  Protected (admin only)
+ */
 const addSong = asyncHandler(async (req, res) => {
     const { name, file, artist, img } = req.body
     try {

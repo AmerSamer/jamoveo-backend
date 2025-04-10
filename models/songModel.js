@@ -1,3 +1,10 @@
+/**
+ * songModel.js
+ *
+ * Defines the Mongoose schema for storing song metadata.
+ * This model supports song selection, search, and file-based lookup for display.
+ */
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
