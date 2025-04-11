@@ -32,7 +32,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // app.use(cors());
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://jamoveo.netlify.app'], // 👈 add both your dev & prod frontends
+    origin: ['http://localhost:5173', 'https://jamoveoja.netlify.app'], // 👈 add both your dev & prod frontends
     credentials: true
 }));
 // 🔗 Connect MongoDB
