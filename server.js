@@ -46,7 +46,7 @@ app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/song', require('./routes/songRoutes'));
 // Test
 app.get('/', (req, res) => {
-    res.status(200).json({ message: "Hello from JaMoveo!" });
+    res.status(200).json({ message: "Hello from JaMoveo! 2" });
 });
 // Global Error Middleware
 app.use(errorHandler);
