@@ -30,8 +30,11 @@ const io = socketIo(server, { cors: { origin: "*" } });
 // 🌐 Global Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors());
-
+// app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://jamoveo.netlify.app'], // 👈 add both your dev & prod frontends
+    credentials: true
+}));
 // 🔗 Connect MongoDB
 connectDB();
 
